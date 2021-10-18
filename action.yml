@@ -1,0 +1,9 @@
+name: 'TryHackMe Workflow'
+author: 'Leo Smith - p4p1'
+description: 'Gets your tryhackme badge and updates it on your README'
+
+inputs:
+  image_path:
+    description: 'Path of the image file you want to update'
+    default: './assets/profile.png'
+    required: false

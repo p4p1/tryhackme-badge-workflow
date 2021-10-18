@@ -1,0 +1,22 @@
+{
+  "name": "tryhackme-workflow",
+  "version": "1.0.0",
+  "description": "A simple github action to retrieve tryhackme static badge image and display it on your profile README",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/p4p1/tryhackme-workflow.git"
+  },
+  "author": "p4p1",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/p4p1/tryhackme-workflow/issues"
+  },
+  "homepage": "https://github.com/p4p1/tryhackme-workflow#readme",
+  "devDependencies": {
+    "eslint": "^8.0.1"
+  }
+}
