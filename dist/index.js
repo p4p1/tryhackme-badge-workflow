@@ -8449,6 +8449,9 @@ const fs = __nccwpck_require__(5747);
 
 const GITHUB_TOKEN = core.getInput("GITHUB_TOKEN");
 const FILEPATH = core.getInput("image_path");
+const THM_USERNAME = core.getInput("username");
+
+core.setSecret(GITHUB_TOKEN);
 
 const dlImg = (async (githubToken, filePath, username) => {
   const url = `https://tryhackme-badges.s3.amazonaws.com/${username}.png`;
@@ -8465,7 +8468,9 @@ const dlImg = (async (githubToken, filePath, username) => {
 
 console.log('hello World');
 console.log(GITHUB_TOKEN);
+console.log(THM_USERNAME);
 console.log(FILEPATH);
+console.log(process.env.GITHUB_REPOSITORY);
 dlImg(GITHUB_TOKEN, FILEPATH, 'p4p1');
 
 })();
