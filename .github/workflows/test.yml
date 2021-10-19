@@ -13,3 +13,4 @@ jobs:
       - uses: ./
         with:
           username: "p4p1"
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

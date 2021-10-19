@@ -10,6 +10,18 @@ inputs:
   username:
     description: 'Try Hack Me username'
     required: true
+  committer_username:
+    description: 'username of committing bot'
+    default: 'thm-p4p1-bot'
+    required: false
+  committer_email:
+    description: 'email of committing bot'
+    default: 'p4p1@thm.bot'
+    required: false
+  committer_message:
+    description: 'message of committing bot'
+    default: 'Updated THM profile badge'
+    required: false
   GITHUB_TOKEN:
     description: 'GitHub token'
     required: true
