@@ -1,4 +1,4 @@
-name: Test
+name: TryHackMe Update Badge
 
 on:
   schedule:
