@@ -8297,6 +8297,14 @@ module.exports = require("assert");
 
 /***/ }),
 
+/***/ 3129:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("child_process");
+
+/***/ }),
+
 /***/ 8614:
 /***/ ((module) => {
 
@@ -8442,6 +8450,7 @@ module.exports = require("zlib");
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
+const {spawn} = __nccwpck_require__(3129);
 const fetch = __nccwpck_require__(467);
 const core = __nccwpck_require__(2186);
 const github = __nccwpck_require__(5438);
