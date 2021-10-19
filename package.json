@@ -4,7 +4,8 @@
   "description": "A simple github action to retrieve tryhackme static badge image and display it on your profile README",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\"",
+    "build": "ncc build index.js -o dist"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,8 @@
   "homepage": "https://github.com/p4p1/tryhackme-workflow#readme",
   "devDependencies": {
     "eslint": "^8.0.1"
+  },
+  "dependencies": {
+    "@vercel/ncc": "^0.31.1"
   }
 }
