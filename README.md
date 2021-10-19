@@ -25,10 +25,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: ./
+      - uses: p4p1/tryhackme-badge-workflow@main
         with:
           # Replace with your tryhackme username
-          username: "p4p1"
+          username: "<USERNAME>"
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 ```
 5. Create a assets/ folder inside of your username repo
