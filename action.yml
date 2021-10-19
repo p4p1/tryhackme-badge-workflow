@@ -5,7 +5,7 @@ description: 'Gets your tryhackme badge and updates it on your README'
 inputs:
   image_path:
     description: 'Path of the image file you want to update'
-    default: './assets/profile.png'
+    default: './assets/thm_propic.png'
     required: false
   GITHUB_TOKEN:
     description: 'GitHub token'

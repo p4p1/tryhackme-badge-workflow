@@ -1,5 +1,10 @@
 const fetch = require('node-fetch');
+const core = require('@actions/core');
+const github = require('@actions/github');
 const fs = require('fs');
+
+const GITHUB_TOKEN = core.getInput("GITHUB_TOKEN");
+const FILEPATH = core.getInput("image_path");
 
 const dlImg = (async (githubToken, filePath, username) => {
   const url = `https://tryhackme-badges.s3.amazonaws.com/${username}.png`;
@@ -15,4 +20,6 @@ const dlImg = (async (githubToken, filePath, username) => {
 });
 
 console.log('hello World');
-dlImg('aa', './assets/thm_propic.png', 'p4p1');
+console.log(GITHUB_TOKEN);
+console.log(FILEPATH);
+dlImg(GITHUB_TOKEN, FILEPATH, 'p4p1');
