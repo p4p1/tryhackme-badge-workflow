@@ -1,11 +1,15 @@
 name: Test
 
 on:
-  pull_request:
-    types: [opened]
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
 jobs:
-  test:
+  tryhackme-badge-update:
+    name: Update this repo's tryhackme badge with the latest tryhackme image badge
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: ./
+        with:
+          username: "p4p1"
