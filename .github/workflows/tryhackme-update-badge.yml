@@ -2,7 +2,8 @@ name: TryHackMe Update Badge
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    # Make it run every 24 hour
+    - cron: '0 0 * * *'
   workflow_dispatch:
 jobs:
   tryhackme-badge-update:
@@ -12,5 +13,6 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ./
         with:
+          # Replace with your tryhackme username
           username: "p4p1"
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
