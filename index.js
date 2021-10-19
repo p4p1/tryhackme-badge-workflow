@@ -63,6 +63,14 @@ const dlImg = (async (githubToken, filePath, username) => {
     'user.email',
     committerEmail,
   ]);
+  await exec('git', ['config', '--global', 'user.name', committerUsername]);
+  if (githubToken) {
+    await exec('git', ['remote', 'set-url', 'origin',
+    `https://${githubToken}@github.com/${process.env.GITHUB_REPOSITORY}.git`]);
+  }
+  await exec('git', ['add', filePath]);
+  await exec('git', ['commit', '-m', commitMessage]);
+  await exec('git', ['push']);
 });
 
 console.log('hello World');
