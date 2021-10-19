@@ -21,6 +21,7 @@
     "eslint": "^8.0.1"
   },
   "dependencies": {
-    "@vercel/ncc": "^0.31.1"
+    "@vercel/ncc": "^0.31.1",
+    "node-fetch": "^2.6.1"
   }
 }
