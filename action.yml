@@ -1,4 +1,4 @@
-name: 'TryHackMe Workflow'
+name: 'TryHackMe Badge Workflow'
 author: 'Leo Smith - p4p1'
 description: 'Gets your tryhackme badge and updates it on your README'
 
