@@ -57,20 +57,25 @@ const dlImg = (async (githubToken, filePath, username) => {
     fileStream.on("finish", resolve);
   });
 
-  await exec('git', [
-    'config',
-    '--global',
-    'user.email',
-    committerEmail,
-  ]);
-  await exec('git', ['config', '--global', 'user.name', committerUsername]);
-  if (githubToken) {
-    await exec('git', ['remote', 'set-url', 'origin',
-    `https://${githubToken}@github.com/${process.env.GITHUB_REPOSITORY}.git`]);
+  try {
+    await exec('git', [
+      'config',
+      '--global',
+      'user.email',
+      committerEmail,
+    ]);
+    await exec('git', ['config', '--global', 'user.name', committerUsername]);
+    if (githubToken) {
+      await exec('git', ['remote', 'set-url', 'origin',
+      `https://${githubToken}@github.com/${process.env.GITHUB_REPOSITORY}.git`]);
+    }
+    await exec('git', ['add', filePath]);
+    await exec('git', ['commit', '-m', commitMessage]);
+    await exec('git', ['push']);
+  } catch (error) {
+    console.log("not able to run git command");
+    console.log(error);
   }
-  await exec('git', ['add', filePath]);
-  await exec('git', ['commit', '-m', commitMessage]);
-  await exec('git', ['push']);
 });
 
 dlImg(GITHUB_TOKEN, FILEPATH, THM_USERNAME);
