@@ -5,7 +5,7 @@ tryhackme-workflow
 
 ![profile_demo](https://raw.githubusercontent.com/p4p1/tryhackme-workflow/main/assets/public_profile.png)
 
-[How This Was Built](https://leosmith.xyz/blog/github-tryhackme-action.html)
+[How This Was Built](https://leosmith.wtf/blog/github-tryhackme-action.html)
 
 ## How to use:
 
