@@ -73,8 +73,6 @@ const dlImg = (async (githubToken, filePath, username) => {
   await exec('git', ['push']);
 });
 
-try {
-  dlImg(GITHUB_TOKEN, FILEPATH, THM_USERNAME);
-} catch (error) {
-  console.log("nothing to commit");
-}
+dlImg(GITHUB_TOKEN, FILEPATH, THM_USERNAME).catch((error) => {
+  console.log('nothing to commit');
+});
