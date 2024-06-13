@@ -15,4 +15,5 @@ jobs:
         with:
           # Replace with your tryhackme username
           username: "p4p1"
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}} # Do not paste your github token here - this is a placeholder
+                                                  # and will pull your github token automatically

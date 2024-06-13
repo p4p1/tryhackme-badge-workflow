@@ -31,7 +31,8 @@ jobs:
         with:
           # Replace with your tryhackme username
           username: "<USERNAME>"
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}} # Do not paste your github token here - this is a placeholder
+                                                  # and will pull your github token automatically
 ```
 5. Create a assets/ folder inside of your username repo
 6. Add the following markdown in your read me and add your username:
