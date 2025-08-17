@@ -62,6 +62,7 @@ function htmlToPng(html, outputPath) {
           .then(() => page.screenshot({
             path: outputPath,
             fullPage: false,
+            omitBackground: true,
             clip: { x: 0, y: 0, width: WIDTH, height: HEIGHT }
           }))
           .then(() => browser.close())
