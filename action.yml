@@ -35,8 +35,28 @@ inputs:
     required: true
 
 runs:
-  using: node20
-  main: dist/index.js
+  using: composite
+  steps:
+    - name: Install Chrome for Puppeteer
+      run: npx puppeteer browsers install chrome
+      shell: bash
+    - name: Run main action
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    - name: Run badge workflow
+      run: node ${GITHUB_ACTION_PATH}/dist/index.js
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
+        USERNAME: ${{ inputs.username }}
+        IMAGE_PATH: ${{ inputs.image_path }}
+        USE_STATIC_IMAGE: ${{ inputs.use_static_image }}
+        USER_PUBLIC_ID: ${{ inputs.user_public_id }}
+        COMMITTER_USERNAME: ${{ inputs.committer_username }}
+        COMMITTER_EMAIL: ${{ inputs.committer_email }}
+        COMMIT_MESSAGE: ${{ inputs.commit_message }}
+
 branding:
   icon: 'cloud-lightning'
   color: 'red'
