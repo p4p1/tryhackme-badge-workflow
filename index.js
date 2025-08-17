@@ -1,15 +1,19 @@
 const { spawn } = require('child_process');
 const core = require('@actions/core');
 const fs = require('fs');
+const puppeteer = require('puppeteer');
 
-const GITHUB_TOKEN = core.getInput("GITHUB_TOKEN");
-const FILEPATH = core.getInput("image_path");
-const THM_USERNAME = core.getInput("username");
-const COMMITTER_USERNAME = core.getInput('committer_username');
-const COMMITTER_EMAIL = core.getInput('committer_email');
-const COMMIT_MESSAGE = core.getInput('commit_message');
-const USE_STATIC_IMAGE = core.getInput('use_static_image') === "true";
-const USER_PUBLIC_ID = core.getInput('user_public_id');
+const WIDTH = 329;
+const HEIGHT = 88;
+
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const FILEPATH = process.env.IMAGE_PATH;
+const THM_USERNAME = process.env.USERNAME;
+const COMMITTER_USERNAME = process.env.COMMITTER_USERNAME;
+const COMMITTER_EMAIL = process.env.COMMITTER_EMAIL;
+const COMMIT_MESSAGE = process.env.COMMIT_MESSAGE;
+const USE_STATIC_IMAGE = process.env.USE_STATIC_IMAGE === "true";
+const USER_PUBLIC_ID = process.env.USER_PUBLIC_ID;
 
 /*
  * Executes a command and returns its result as promise
@@ -43,6 +47,29 @@ function exec(cmd, args = [], options = {}) {
 
 core.setSecret(GITHUB_TOKEN);
 
+async function htmlToPng(html, outputPath) {
+  return puppeteer.launch({
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox'
+    ]
+  })
+  .then(browser => {
+    return browser.newPage()
+      .then(page => {
+        page.setViewport({ width: WIDTH, height: HEIGHT }).then(() => {
+          return page.setContent(html, { waitUntil: 'networkidle0' })
+            .then(() => page.screenshot({ 
+              path: outputPath, 
+              fullPage: false,
+              clip: { x: 0, y: 0, width: WIDTH, height: HEIGHT }
+            }))
+            .then(() => browser.close());
+        });
+      });
+  });
+}
+
 /**
  * Downloads the image and commits/pushes it to GitHub.
  */
@@ -63,8 +90,15 @@ function dlImg(githubToken, filePath, username, useStaticImage, userPublicId) {
       return res.arrayBuffer();
     })
     .then(buffer => {
+      if (useStaticImage) {
       fs.writeFileSync(filePath, Buffer.from(buffer));
       console.log(`[dlImg] Image saved to: ${filePath}`);
+      } else {
+      const htmlContent = Buffer.from(buffer).toString('utf8');
+      console.log('[dlImg] Converting HTML to PNG...');
+      console.log(`[dlImg] Image saved to: ${filePath}`);
+      return htmlToPng(htmlContent, filePath);
+      }
     })
     .then(() => {
       console.log('[dlImg] Setting git user configuration...');
@@ -112,7 +146,3 @@ dlImg(
   USE_STATIC_IMAGE, 
   USER_PUBLIC_ID
 )
-
-module.exports = {
-  exec
-};
