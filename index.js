@@ -47,7 +47,7 @@ function exec(cmd, args = [], options = {}) {
 
 core.setSecret(GITHUB_TOKEN);
 
-async function htmlToPng(html, outputPath) {
+function htmlToPng(html, outputPath) {
   return puppeteer.launch({
     args: [
       '--no-sandbox',
@@ -57,15 +57,17 @@ async function htmlToPng(html, outputPath) {
   .then(browser => {
     return browser.newPage()
       .then(page => {
-        page.setViewport({ width: WIDTH, height: HEIGHT }).then(() => {
-          return page.setContent(html, { waitUntil: 'networkidle0' })
-            .then(() => page.screenshot({ 
-              path: outputPath, 
-              fullPage: false,
-              clip: { x: 0, y: 0, width: WIDTH, height: HEIGHT }
-            }))
-            .then(() => browser.close());
-        });
+        return page.setViewport({ width: WIDTH, height: HEIGHT })
+          .then(() => page.setContent(html, { waitUntil: 'networkidle0' }))
+          .then(() => page.screenshot({
+            path: outputPath,
+            fullPage: false,
+            clip: { x: 0, y: 0, width: WIDTH, height: HEIGHT }
+          }))
+          .then(() => browser.close())
+          .catch(err => {
+            return browser.close().then(() => { throw err; });
+          });
       });
   });
 }
