@@ -22,13 +22,41 @@ inputs:
     description: 'message of committing bot'
     default: 'Updated THM profile badge'
     required: false
+  use_static_image:
+    description: 'Use static image instead of dynamic'
+    default: "true"
+    required: false
+  user_public_id:
+    description: 'Public ID of the user for the badge'
+    default: ''
+    required: false
   GITHUB_TOKEN:
     description: 'GitHub token'
     required: true
 
 runs:
-  using: node16
-  main: dist/index.js
+  using: composite
+  steps:
+    - name: Install Chrome for Puppeteer
+      run: npx puppeteer browsers install chrome
+      shell: bash
+    - name: Run main action
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    - name: Run badge workflow
+      run: node ${GITHUB_ACTION_PATH}/dist/index.js
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
+        USERNAME: ${{ inputs.username }}
+        IMAGE_PATH: ${{ inputs.image_path }}
+        USE_STATIC_IMAGE: ${{ inputs.use_static_image }}
+        USER_PUBLIC_ID: ${{ inputs.user_public_id }}
+        COMMITTER_USERNAME: ${{ inputs.committer_username }}
+        COMMITTER_EMAIL: ${{ inputs.committer_email }}
+        COMMIT_MESSAGE: ${{ inputs.commit_message }}
+
 branding:
   icon: 'cloud-lightning'
   color: 'red'

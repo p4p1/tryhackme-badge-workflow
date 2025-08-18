@@ -1,6 +1,6 @@
 {
   "name": "tryhackme-workflow",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple github action to retrieve tryhackme static badge image and display it on your profile README",
   "main": "index.js",
   "scripts": {
@@ -18,14 +18,13 @@
   },
   "homepage": "https://github.com/p4p1/tryhackme-workflow#readme",
   "devDependencies": {
+    "@vercel/ncc": "^0.38.3",
     "eslint": "^8.0.1",
-    "node": "^16.0.0"
+    "node": "^20.0.0"
   },
   "dependencies": {
     "@actions/core": "^1.6.0",
     "@actions/github": "^5.0.0",
-    "@vercel/ncc": "^0.31.1",
-    "ncc": "^0.3.6",
-    "node-fetch": "^2.6.1"
+    "puppeteer": "^24.16.2"
   }
 }

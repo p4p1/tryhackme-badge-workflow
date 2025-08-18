@@ -49,4 +49,6 @@ username           | Tryhackme username                        |                
 committer_username | Username of commiting bot                 | thm-p4p1-bot              | false
 committer_email    | Email of commiting bot                    | p4p1@thm.bot              | false
 commit_message     | Commit message                            | Updated THM profile badge | false
+use_static_image   | Use static info instead of use the api    | true                      | false
+user_public_id     | TryHackme Public User ID                  |                           | false
 GITHUB_TOKEN       | Your github secret token                  |                           | true
