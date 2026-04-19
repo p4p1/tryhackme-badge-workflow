@@ -1,6 +1,8 @@
 tryhackme-workflow
 ==================
 
+_I am moving away from tryhackme. currently I'm to busy on other projects to work on this thanks for all the suport <3_
+
 *A simple github action to retrieve tryhackme static badge image and display it on your profile README!*
 
 ![profile_demo](https://raw.githubusercontent.com/p4p1/tryhackme-workflow/main/assets/public_profile.png)
